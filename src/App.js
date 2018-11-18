@@ -5,6 +5,7 @@ import Header from './components/layout/Header/Header'
 import Login from './components/auth/Login/Login'
 import Signup from './components/auth/Signup/Signup'
 import CreateTodo from './components/todos/CreateTodo/CreateTodo'
+import DisplayTodo from './components/todos/DisplayTodo/DisplayTodo';
 
 class App extends Component {
   render() {
@@ -17,6 +18,7 @@ class App extends Component {
               <Route exact path='/' render={() => {return (<Login />)}}></Route>
               <Route exact path='/signup' render={() => {return (<Signup />)}}></Route>
               <Route exact path='/create' render={() => {return (<CreateTodo />)}}></Route>
+              <Route exact path='/display' render={() => {return (<DisplayTodo />)}}></Route>
             </Switch>
           </div>
         </Fragment>

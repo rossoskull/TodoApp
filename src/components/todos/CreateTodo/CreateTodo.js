@@ -8,8 +8,9 @@ class CreateTodo extends Component {
 
     state = {
         title: '',
-        author: '',
-        body: ''
+        author: 'Jay Mistry',
+        body: '',
+        status: 0
     }
 
     handleSubmit = e => {

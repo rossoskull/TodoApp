@@ -1,5 +1,5 @@
-export const loginUser = dispatch => {
-    return (dispatch, user, { getFirebase, getFirestore }) => {
+export const loginUser = user => {
+    return (dispatch, getState, { getFirebase, getFirestore }) => {
 
         dispatch({type: 'LOGIN', user})
     }
