@@ -8,6 +8,13 @@ const initState = {
 
 const todoReducer = (state = initState, action) => {
     // Handle different actions
+    switch(action.type) {
+        case 'CREATE_TODO':
+            console.log('Dispatch', state)
+            break
+        default:
+            break
+    }
     return state
 }
 
