@@ -2,11 +2,11 @@ import React, { Component } from 'react'
 import { firestoreConnect } from 'react-redux-firebase'
 import { compose } from 'redux'
 import { connect } from 'react-redux'
-import { Card, Typography, CardContent } from '@material-ui/core';
+import { Card, Typography, CardContent, Button } from '@material-ui/core'
+import { deleteTodo } from '../../../store/actions/todoActions'
 
 class DisplayTodo extends Component {
     render() {
-        console.log(this.props.todos)
         const { todos } = this.props
         return(
             <div className='todos'>
@@ -15,7 +15,7 @@ class DisplayTodo extends Component {
                 </Typography>
                 {todos && todos.map(t => {
                     return(
-                        <Card style={{marginBottom: '10px'}}>
+                        <Card key={t.id} style={{marginBottom: '10px'}}>
                             <CardContent>
                                 <Typography variant='h5'>
                                     {t.title}
@@ -26,6 +26,7 @@ class DisplayTodo extends Component {
                                 <Typography variant='body1'>
                                     {t.body}
                                 </Typography>
+                                <Button onClick={() => {this.props.deleteTodo(t.id)}} >Delete</Button>
                             </CardContent>
                         </Card>
                     )
@@ -41,7 +42,13 @@ const mapDispatchToAction = state => {
     }
 }
 
+const mapActionToState = dispatch => {
+    return {
+        deleteTodo: id => dispatch(deleteTodo(id))
+    }
+}
+
 export default compose(
-    connect(mapDispatchToAction),
+    connect(mapDispatchToAction, mapActionToState),
     firestoreConnect([{ collection: 'todos' }])
 )(DisplayTodo)

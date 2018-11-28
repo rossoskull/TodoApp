@@ -11,3 +11,18 @@ export const createTodo = todo => {
         })
     }
 }
+
+export const deleteTodo = id => {
+    return (dispatch, getState, { getFirestore }) => {
+        const firestore = getFirestore()
+        firestore.delete({ collection: 'todos', doc: id})
+        .then(() => {
+            console.log('deleted')
+            dispatch({type: 'DELETE_TODO'})
+        })
+        .catch(e => {
+            console.log('Error deleting', e)
+            dispatch({type: 'DELETE_TODO_ERROR', err: e})
+        })
+    }
+}

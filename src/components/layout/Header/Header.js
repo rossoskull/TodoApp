@@ -11,22 +11,24 @@ const Header = () => {
             fontSize: '17px'
         },
         appbar: {
-            backgroundColor: pallette.forestGreen
+            backgroundColor: pallette.forestGreen,
         }
     }
     
     return(
-        <AppBar style={styles.appbar} position='relative'>
-            <Toolbar>
-                <Typography variant='display1' color='inherit'>
-                    React Todo App
-                </Typography>
-                <div style={{marginLeft: 'auto'}}> 
-                    <LoggedOutButtons styles={styles}/>
-                    <LoggedInButtons styles={styles}/>
-                </div>
-            </Toolbar>
-        </AppBar>
+        <header>
+            <AppBar style={styles.appbar} position='relative'>
+                <Toolbar>
+                    <Typography variant='display1' color='inherit'>
+                        React Todo App
+                    </Typography>
+                    <div style={{marginLeft: 'auto'}}> 
+                        <LoggedOutButtons styles={styles}/>
+                        <LoggedInButtons styles={styles}/>
+                    </div>
+                </Toolbar>
+            </AppBar>
+        </header>
     )
 }
 
