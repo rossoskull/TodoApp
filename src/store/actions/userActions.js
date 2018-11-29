@@ -6,11 +6,23 @@ export const loginUser = user => {
             user.email,
             user.password
         ).then(() => {
-            console.log("Login")
             dispatch({type: 'LOGIN'})
         }).catch(e => {
-            console.log("Login Error")
             dispatch({type: 'LOGIN_ERROR', e})
+        })
+    }
+}
+
+export const logoutUser = () => {
+    return (dispatch, getState, {getFirebase}) => {
+        console.log('logout')
+        const firebase = getFirebase()
+        firebase.logout()
+        .then(() => {
+            dispatch({type: 'LOGOUT_USER'})
+        })
+        .catch(e => {
+            dispatch({type: 'LOGOUT_USER_ERROR', e})
         })
     }
 }

@@ -22,6 +22,7 @@ class Login extends Component {
     }
 
     render() {
+        console.log(this.props.firebase)
         return(
             <Fragment>
                 <Typography variant='h3'>
@@ -45,4 +46,10 @@ const mapDispathToComponent = dispatch => {
     }
 }
 
-export default connect(null, mapDispathToComponent)(Login)
+const mapStateToProps = state => {
+    return {
+        firebase: state.firebase
+    }
+}
+
+export default connect(mapStateToProps, mapDispathToComponent)(Login)
