@@ -12,8 +12,13 @@ class Login extends Component {
 
     handleSubmit = e => {
         e.preventDefault()
-        console.log('Login', this.state)
         this.props.loginUser(this.state)
+    }
+
+    handleChange = e => {
+        this.setState({
+            [e.target.id]: e.target.value
+        })
     }
 
     render() {
@@ -23,8 +28,8 @@ class Login extends Component {
                     Log In
                 </Typography>
                 <form onSubmit={this.handleSubmit} name='loginForm'>
-                    <TextField type='text' label='Email ID' name='email'></TextField><br />
-                    <TextField type='password' label='Password' name='password'></TextField><br />
+                    <TextField type='text' label='Email ID' id='email' onChange={this.handleChange}></TextField><br />
+                    <TextField type='password' label='Password' id='password' onChange={this.handleChange}></TextField><br />
                     <Button type='submit' style={{backgroundColor: pallette.jadeGreen }} >
                         Submit
                     </Button>

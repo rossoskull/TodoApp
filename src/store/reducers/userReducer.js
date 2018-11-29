@@ -7,7 +7,10 @@ export const userReducer = (state = initState, action) => {
     
     switch(action.type) {
         case 'LOGIN':
-            console.log('LOGIN', state)
+            console.log('LOGIN')
+            break
+        case 'LOGIN_ERROR':
+            console.log('LOGIN_ERROR', action.e)
             break
         default:
             break
