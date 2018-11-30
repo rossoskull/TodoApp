@@ -3,6 +3,7 @@ import { Typography, TextField, Button } from '@material-ui/core'
 import pallette from '../../layout/pallette'
 import { connect } from 'react-redux'
 import { createTodo } from '../../../store/actions/todoActions'
+import { Redirect } from 'react-router-dom'
 
 class CreateTodo extends Component {
 
@@ -25,6 +26,11 @@ class CreateTodo extends Component {
     }
 
     render() {
+
+        if ( this.props.auth.isEmpty ) {
+            return <Redirect to='/' />
+        }
+
         return(
             <Fragment>
                 <Typography variant='h3'>
@@ -43,10 +49,16 @@ class CreateTodo extends Component {
     }
 }
 
+const mapStateToProps = state => {
+    return {
+        auth: state.firebase.auth
+    }
+}
+
 const mapActionToDispatch = dispatch => {
     return {
         createTodo: todo => dispatch(createTodo(todo))
     }
 }
 
-export default connect(null, mapActionToDispatch)(CreateTodo)
+export default connect(mapStateToProps, mapActionToDispatch)(CreateTodo)

@@ -4,10 +4,18 @@ import { compose } from 'redux'
 import { connect } from 'react-redux'
 import { Card, Typography, CardContent, Button } from '@material-ui/core'
 import { deleteTodo } from '../../../store/actions/todoActions'
+import { Redirect } from 'react-router-dom'
 
 class DisplayTodo extends Component {
     render() {
-        const { todos } = this.props
+        const { todos, auth } = this.props
+
+        console.log(auth)
+
+        if ( auth.isEmpty ) {
+            return (<Redirect to="/" />)
+        }
+
         return(
             <div className='todos'>
                 <Typography variant='display1'>
@@ -38,7 +46,8 @@ class DisplayTodo extends Component {
 
 const mapDispatchToAction = state => {
     return {
-        todos: state.firestore.ordered.todos
+        todos: state.firestore.ordered.todos,
+        auth: state.firebase.auth
     }
 }
 

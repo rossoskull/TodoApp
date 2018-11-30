@@ -3,6 +3,7 @@ import { Typography, TextField, Button } from '@material-ui/core';
 import pallette from '../../layout/pallette'
 import { connect } from 'react-redux'
 import { loginUser } from '../../../store/actions/userActions'
+import { Redirect } from 'react-router-dom'
 
 class Login extends Component {
     state = {
@@ -22,7 +23,9 @@ class Login extends Component {
     }
 
     render() {
-        console.log(this.props.firebase)
+        
+        if ( !this.props.firebase.auth.isEmpty ) { return <Redirect to="/display" /> }
+
         return(
             <Fragment>
                 <Typography variant='h3'>

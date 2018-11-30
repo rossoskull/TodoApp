@@ -3,7 +3,9 @@ import { AppBar, Toolbar, Typography } from '@material-ui/core'
 import LoggedInButtons from './LoggedInButtons'
 import LoggedOutButtons from './LoggedOutButtons'
 import pallette from '../pallette'
-const Header = () => {
+import { connect } from 'react-redux'
+
+const Header = ({firebase}) => {
     const styles = {
         buttons: {
             marginRight: '5px',
@@ -14,6 +16,8 @@ const Header = () => {
             backgroundColor: pallette.forestGreen,
         }
     }
+
+    const Buttons = (firebase.auth.isEmpty) ? (<LoggedOutButtons styles={styles}/>) : (<LoggedInButtons styles={styles}/>)
     
     return(
         <header>
@@ -23,8 +27,7 @@ const Header = () => {
                         React Todo App
                     </Typography>
                     <div style={{marginLeft: 'auto'}}> 
-                        <LoggedOutButtons styles={styles}/>
-                        <LoggedInButtons styles={styles}/>
+                    {Buttons}                       
                     </div>
                 </Toolbar>
             </AppBar>
@@ -32,4 +35,10 @@ const Header = () => {
     )
 }
 
-export default Header
+const mapStateToProps = state => {
+    return {
+        firebase: state.firebase
+    }
+}
+
+export default connect(mapStateToProps)(Header)

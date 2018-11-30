@@ -9,6 +9,7 @@ export const userReducer = (state = initState, action) => {
         case 'LOGIN':
             console.log('LOGIN SUCCESSFUL')
             return state
+
         case 'LOGIN_ERROR':
             console.log('LOGIN_ERROR')
             console.log(action.e)
@@ -16,9 +17,11 @@ export const userReducer = (state = initState, action) => {
                 ...state,
                 authError: action.e
             }
+
         case 'LOGOUT_USER':
             console.log('LOGOUT SUCCESSFUL')
             return state
+
         case 'LOGOUT_USER_ERROR':
             console.log('LOGOUT ERROR')
             console.log(action.e)
@@ -26,6 +29,7 @@ export const userReducer = (state = initState, action) => {
                 ...state,
                 authError: action.e
             }
+            
         default:
             break
     }
