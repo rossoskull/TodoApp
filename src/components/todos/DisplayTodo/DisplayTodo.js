@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import { firestoreConnect } from 'react-redux-firebase'
 import { compose } from 'redux'
 import { connect } from 'react-redux'
-import { Card, Typography, CardContent, Button } from '@material-ui/core'
-import { deleteTodo } from '../../../store/actions/todoActions'
+import { Card, Typography, CardContent, CardActions, Button } from '@material-ui/core'
+import { deleteTodo, updateTodo } from '../../../store/actions/todoActions'
 import { Redirect } from 'react-router-dom'
 
 class DisplayTodo extends Component {
@@ -12,6 +12,12 @@ class DisplayTodo extends Component {
 
         if ( auth.isEmpty ) {
             return (<Redirect to="/" />)
+        }
+
+        const colorCode = {
+            0: 'rgb(255, 255, 128)',
+            1: 'rgb(191, 255, 128)',
+            2: 'rgb(255, 153, 102)'
         }
 
         if ( todos ) {
@@ -27,7 +33,13 @@ class DisplayTodo extends Component {
                 </Typography>
                 {todos && todos.map(t => {
                     return(
-                        <Card key={t.id} style={{marginBottom: '10px'}}>
+                        <Card
+                            key={t.id}
+                            style={{
+                                marginBottom: '10px',
+                                backgroundColor: colorCode[t.status]
+                            }}
+                          >
                             <CardContent>
                                 <Typography variant='h5'>
                                     {t.title}
@@ -38,8 +50,39 @@ class DisplayTodo extends Component {
                                 <Typography variant='body1'>
                                     {t.body}
                                 </Typography>
-                                <Button onClick={() => {this.props.deleteTodo(t.id)}} >Delete</Button>
                             </CardContent>
+                            <CardActions>
+                                <Button
+                                    style={{
+                                        backgroundColor: '#33cc33',
+                                        color: 'white'
+                                    }}
+                                    onClick={() => {this.props.updateTodo({id: t.id, status: 1})}}
+                                >
+                                    Done!
+                                </Button>
+
+                                <Button
+                                    style={{
+                                        backgroundColor: '#ff6600',
+                                        color: 'white'
+                                    }}
+                                    onClick={() => {this.props.updateTodo({id: t.id, status: 2})}}
+                                >
+                                    Not Done
+                                </Button>
+
+                                <Button
+                                    style={{
+                                        backgroundColor: '#ff3333',
+                                        color: 'white'
+                                    }}
+                                    onClick={() => {this.props.deleteTodo(t.id)}}
+                                >
+                                    Delete
+                                </Button>
+
+                            </CardActions>
                         </Card>
                     )
                 })}
@@ -57,7 +100,8 @@ const mapDispatchToAction = state => {
 
 const mapActionToState = dispatch => {
     return {
-        deleteTodo: id => dispatch(deleteTodo(id))
+        deleteTodo: id => dispatch(deleteTodo(id)),
+        updateTodo: id => dispatch(updateTodo(id))
     }
 }
 

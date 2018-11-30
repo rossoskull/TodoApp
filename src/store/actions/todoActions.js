@@ -26,3 +26,16 @@ export const deleteTodo = id => {
         })
     }
 }
+
+export const updateTodo = todo => {
+    return (dispatch, getState, {getFirestore}) => {
+        const firestore = getFirestore()
+        firestore.collection('todos').doc(todo.id).update({
+            status: todo.status
+        }).then(() => {
+            dispatch({type: 'UPDATE_TODO_SUCCESS'})
+        }).catch(e => {
+            dispatch({type: 'UPDATE_TODO_ERROR', e})
+        })
+    }
+}

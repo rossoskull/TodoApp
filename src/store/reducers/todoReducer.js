@@ -10,13 +10,41 @@ const todoReducer = (state = initState, action) => {
     // Handle different actions
     switch(action.type) {
         case 'CREATE_TODO':
-            return state
+            return {
+                ...state,
+                todoError: null
+            }
+
         case 'CREATE_TODO_ERROR':
-            return state
+            return {
+                ...state,
+                todoError: action.e
+            }
+
         case 'DELETE_TODO':
-            return state
+            return {
+                ...state,
+                todoError: null
+            }
+
         case 'DELETE_TODO_ERROR':
-            return state
+            return {
+                ...state,
+                todoError: action.e
+            }
+
+        case 'UPDATE_TODO_SUCCESS':
+            return {
+                ...state,
+                todoError: null
+            }
+
+        case 'UPDATE_TODO_ERROR':
+            return {
+                ...state,
+                todoError: action.e
+            }
+
         default:
             return state
     }
