@@ -37,6 +37,9 @@ class Login extends Component {
                     <Button type='submit' style={{backgroundColor: pallette.jadeGreen }} >
                         Submit
                     </Button>
+                    <p style={{textAlign: 'center', color: 'red'}} >
+                        {(this.props.authError) ? this.props.authError.message : null}
+                    </p>
                 </form>
             </Fragment>
         )
@@ -51,7 +54,8 @@ const mapDispathToComponent = dispatch => {
 
 const mapStateToProps = state => {
     return {
-        firebase: state.firebase
+        firebase: state.firebase,
+        authError: state.user.authError
     }
 }
 

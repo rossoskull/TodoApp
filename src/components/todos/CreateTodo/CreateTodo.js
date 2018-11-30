@@ -9,7 +9,7 @@ class CreateTodo extends Component {
 
     state = {
         title: '',
-        author: 'Jay Mistry',
+        author: '',
         body: '',
         status: 0
     }
@@ -33,7 +33,7 @@ class CreateTodo extends Component {
 
         return(
             <Fragment>
-                <Typography variant='h3'>
+                <Typography variant='display1'>
                     Create Todo
                 </Typography>
                 <form name='addtodo' onSubmit={this.handleSubmit}>
@@ -51,7 +51,9 @@ class CreateTodo extends Component {
 
 const mapStateToProps = state => {
     return {
-        auth: state.firebase.auth
+        auth: state.firebase.auth,
+        firebase: state.firebase,
+        firestore: state.firestore
     }
 }
 

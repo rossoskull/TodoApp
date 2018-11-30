@@ -10,8 +10,6 @@ class DisplayTodo extends Component {
     render() {
         const { todos, auth } = this.props
 
-        console.log(auth)
-
         if ( auth.isEmpty ) {
             return (<Redirect to="/" />)
         }
