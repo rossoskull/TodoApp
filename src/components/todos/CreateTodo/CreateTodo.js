@@ -31,7 +31,7 @@ class CreateTodo extends Component {
     render() {
 
         if ( this.props.auth.isEmpty ) {
-            return <Redirect to='/' />
+            return <Redirect to='/kuizu/' />
         }
 
         return(

@@ -29,7 +29,7 @@ class Signup extends Component {
     render() {
 
         if ( !this.props.firebase.auth.isEmpty ) {
-            return (<Redirect to="display" />)
+            return (<Redirect to="/kuizu/display" />)
         }
 
         return(

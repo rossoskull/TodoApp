@@ -11,7 +11,7 @@ class DisplayTodo extends Component {
         let { todos, auth } = this.props
 
         if ( auth.isEmpty ) {
-            return (<Redirect to="/" />)
+            return (<Redirect to="/kuizu/" />)
         }
 
         const colorCode = {
