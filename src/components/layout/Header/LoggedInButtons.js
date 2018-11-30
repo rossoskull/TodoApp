@@ -7,8 +7,8 @@ import { connect } from 'react-redux'
 const LoggedInButtons = ({styles, logout}) => {
     return (
         <Fragment>
-            <Button component={NavLink} to='/create' style={styles.buttons}>Create Todo</Button>
-            <Button component={NavLink} to='/display' style={styles.buttons}>Display</Button>
+            <Button component={NavLink} to='/TodoApp/create' style={styles.buttons}>Create Todo</Button>
+            <Button component={NavLink} to='/TodoApp/display' style={styles.buttons}>Display</Button>
             <Button style={styles.buttons} onClick={logout}>Log Out</Button>
         </Fragment>
     )
