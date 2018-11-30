@@ -1,7 +1,8 @@
 {
-  "name": "firebase-todo",
-  "version": "0.1.0",
+  "name": "TodoApp - React, Redux & Firebase",
+  "version": "1.0.0",
   "private": true,
+  "homepage": "https://rossoskull.me/TodoApp",
   "dependencies": {
     "@material-ui/core": "^3.5.1",
     "firebase": "^5.5.8",
