@@ -16,7 +16,10 @@ class CreateTodo extends Component {
 
     handleSubmit = e => {
         e.preventDefault()
-        this.props.createTodo(this.state)
+        let state = this.state
+        state.author = this.props.profile.fname + ' ' + this.props.profile.lname
+        state.authId = this.props.auth.uid
+        this.props.createTodo(state)
     }
 
     handleChange = e => {
@@ -38,7 +41,6 @@ class CreateTodo extends Component {
                 </Typography>
                 <form name='addtodo' onSubmit={this.handleSubmit}>
                     <TextField name='title' label='Title' onChange={this.handleChange} /><br />
-                    <TextField name='author' label='Author' onChange={this.handleChange} /><br />
                     <TextField name='body' type='textarea' label='Body' onChange={this.handleChange} /><br />
                     <Button type='submit' style={{backgroundColor: pallette.jadeGreen }} >
                         Create
@@ -52,8 +54,7 @@ class CreateTodo extends Component {
 const mapStateToProps = state => {
     return {
         auth: state.firebase.auth,
-        firebase: state.firebase,
-        firestore: state.firestore
+        profile: state.firebase.profile,
     }
 }
 

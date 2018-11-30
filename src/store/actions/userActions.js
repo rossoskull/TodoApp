@@ -32,7 +32,6 @@ export const signUp = user => {
             email: user.email,
             password: user.password
         }).then(u => {
-            console.log(u)
             return getFirestore().collection('users').doc(u.user.uid).set({
                 fname: user.fname,
                 lname: user.lname
@@ -40,7 +39,6 @@ export const signUp = user => {
         }).then(() => {
             dispatch({ type: 'SIGNUP_SUCCESS' })
         }).catch(err => {
-            console.log(err)
             dispatch({ type: 'SIGNUP_ERROR', err })
         })
     }

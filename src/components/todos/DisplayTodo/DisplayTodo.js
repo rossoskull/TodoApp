@@ -8,12 +8,18 @@ import { Redirect } from 'react-router-dom'
 
 class DisplayTodo extends Component {
     render() {
-        const { todos, auth } = this.props
+        let { todos, auth } = this.props
 
         if ( auth.isEmpty ) {
             return (<Redirect to="/" />)
         }
 
+        if ( todos ) {
+            todos = todos.filter(t => {
+                return (t.authId === auth.uid)
+            })
+        }
+        
         return(
             <div className='todos'>
                 <Typography variant='display1'>
