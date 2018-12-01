@@ -45,6 +45,7 @@ class Footer extends Component {
 					anchor='bottom'
 					open={this.state.drawer}
 					onClose={this.handleClose}
+					onOpen={this.handleOpen}
 				>
 					<Typography variant='subtitle1' align='center'>
 						Learn more!
