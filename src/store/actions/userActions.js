@@ -28,11 +28,11 @@ export const logoutUser = () => {
 export const signUp = user => {
     return (dispatch, getState, {getFirebase, getFirestore}) => {
         const firebase = getFirebase()
-        firebase.createUser({
-            email: user.email,
-            password: user.password
-        }).then(u => {
-            return getFirestore().collection('users').doc(u.user.uid).set({
+        firebase.auth().createUserWithEmailAndPassword(
+            user.email,
+            user.password
+        ).then(res => {
+            return getFirestore().collection('users').doc(res.user.uid).set({
                 fname: user.fname,
                 lname: user.lname
             })
