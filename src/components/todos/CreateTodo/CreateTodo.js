@@ -2,24 +2,27 @@ import React, { Component, Fragment } from 'react'
 import { Typography, Card, CardContent, Button } from '@material-ui/core'
 import pallette from '../../layout/pallette'
 import { connect } from 'react-redux'
-import { createTodo } from '../../../store/actions/todoActions'
+import { createTodo, resetCreateTodoLoadState } from '../../../store/actions/todoActions'
 import { Redirect } from 'react-router-dom'
+import Loader from '../../layout/Loader/Loader';
 
 class CreateTodo extends Component {
 
     state = {
         title: '',
-        author: '',
         body: '',
-        status: 0
+        status: 0,
+        loading: false
     }
 
     handleSubmit = e => {
         e.preventDefault()
+        this.setState({ loading: true })
         let state = this.state
         state.author = this.props.profile.fname + ' ' + this.props.profile.lname
         state.authId = this.props.auth.uid
-        this.props.createTodo(state)
+        const { title, body, status, author, authId } = this.state
+        this.props.createTodo({ title, body, status, author, authId })
     }
 
     handleChange = e => {
@@ -32,6 +35,16 @@ class CreateTodo extends Component {
 
         if ( this.props.auth.isEmpty ) {
             return <Redirect to='/TodoApp/' />
+        }
+
+        if ( this.props.loaded === false && this.state.loading === true ) {
+            this.setState({ loading: false })
+            this.props.reset()
+        }
+
+        if ( this.props.loaded === true ) {
+            this.props.reset()
+            return <Redirect to='/TodoApp/display' />
         }
 
         return(
@@ -59,6 +72,7 @@ class CreateTodo extends Component {
                         </CardContent>
                     </Card>
                 </form>
+                <Loader loading={this.state.loading}/>
             </Fragment>
         )
     }
@@ -68,12 +82,14 @@ const mapStateToProps = state => {
     return {
         auth: state.firebase.auth,
         profile: state.firebase.profile,
+        loaded: state.todo.loaded
     }
 }
 
 const mapActionToDispatch = dispatch => {
     return {
-        createTodo: todo => dispatch(createTodo(todo))
+        createTodo: todo => dispatch(createTodo(todo)),
+        reset: () => dispatch(resetCreateTodoLoadState())
     }
 }
 

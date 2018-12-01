@@ -12,13 +12,21 @@ const todoReducer = (state = initState, action) => {
         case 'CREATE_TODO':
             return {
                 ...state,
-                todoError: null
+                todoError: null,
+                loaded: true
             }
 
         case 'CREATE_TODO_ERROR':
             return {
                 ...state,
-                todoError: action.e
+                todoError: action.e,
+                loaded: false
+            }
+
+        case 'CREATE_TODO_RESET_LOADSTATE':
+            return {
+                ...state,
+                loaded: null
             }
 
         case 'DELETE_TODO':

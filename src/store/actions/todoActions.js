@@ -12,6 +12,12 @@ export const createTodo = todo => {
     }
 }
 
+export const resetCreateTodoLoadState = () => {
+    return (dispatch, getState) => {
+        dispatch({type: 'CREATE_TODO_RESET_LOADSTATE'})
+    }
+}
+
 export const deleteTodo = id => {
     return (dispatch, getState, { getFirestore }) => {
         const firestore = getFirestore()
