@@ -16,10 +16,10 @@ class App extends Component {
           <Header />
           <div className='container main-body'>
             <Switch>
-              <Route exact path='/TodoApp/' render={() => {return (<Login />)}}></Route>
               <Route exact path='/TodoApp/signup' render={() => {return (<Signup />)}}></Route>
               <Route exact path='/TodoApp/create' render={() => {return (<CreateTodo />)}}></Route>
               <Route exact path='/TodoApp/display' render={() => {return (<DisplayTodo />)}}></Route>
+              <Route exact path='/TodoApp/' render={() => {return (<Login />)}}></Route>
             </Switch>
             <Footer />
           </div>          

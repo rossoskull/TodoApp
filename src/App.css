@@ -35,3 +35,7 @@ input, textarea {
     left: 50%;
     transform: translateX(-50%);
 }
+
+.active {
+    background-color: #053612!important;
+}
