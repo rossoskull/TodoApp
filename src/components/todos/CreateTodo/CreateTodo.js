@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react'
-import { Typography, TextField, Button } from '@material-ui/core'
+import { Typography, Card, CardContent, Button } from '@material-ui/core'
 import pallette from '../../layout/pallette'
 import { connect } from 'react-redux'
 import { createTodo } from '../../../store/actions/todoActions'
@@ -36,15 +36,28 @@ class CreateTodo extends Component {
 
         return(
             <Fragment>
-                <Typography variant='display1'>
-                    Create Todo
-                </Typography>
+                
                 <form name='addtodo' onSubmit={this.handleSubmit}>
-                    <TextField name='title' label='Title' onChange={this.handleChange} /><br />
-                    <TextField name='body' type='textarea' label='Body' onChange={this.handleChange} /><br />
-                    <Button type='submit' style={{backgroundColor: pallette.jadeGreen }} >
-                        Create
-                    </Button>
+                    <Card className='form-card'>
+                        <CardContent>
+                            <Typography variant='display1'>
+                                Create Todo
+                            </Typography>
+                            <input name='title' type='text' placeholder='Title' onChange={this.handleChange} /><br />
+                            <textarea name='body' placeholder='Body' onChange={this.handleChange} /><br />
+                            <Button
+                                type='submit'
+                                id='submit-button'
+                                style={{
+                                    backgroundColor: pallette.jadeGreen,
+                                    margin: 'auto',
+                                    color: 'white',
+                                    width: '125px'
+                                }}>
+                                Create Todo
+                            </Button>
+                        </CardContent>
+                    </Card>
                 </form>
             </Fragment>
         )

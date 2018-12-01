@@ -8,7 +8,7 @@
     margin-bottom: 20px;
 }
 
-input[type="text"], input[type="email"], input[type="password"] {
+input[type="text"], input[type="email"], input[type="password"], textarea {
     margin: 10px 0px;
     padding: 10px;
     border: 1px solid grey;
@@ -18,6 +18,13 @@ input[type="text"], input[type="email"], input[type="password"] {
 }
 
 #submit-button {
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+input, textarea {
+    width: 80%;
     position: relative;
     left: 50%;
     transform: translateX(-50%);
