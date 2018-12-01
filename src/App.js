@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react'
 import './App.css'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import Header from './components/layout/Header/Header'
+import Footer from './components/layout/Footer/Footer'
 import Login from './components/auth/Login/Login'
 import Signup from './components/auth/Signup/Signup'
 import CreateTodo from './components/todos/CreateTodo/CreateTodo'
@@ -20,7 +21,8 @@ class App extends Component {
               <Route exact path='/TodoApp/create' render={() => {return (<CreateTodo />)}}></Route>
               <Route exact path='/TodoApp/display' render={() => {return (<DisplayTodo />)}}></Route>
             </Switch>
-          </div>
+            <Footer />
+          </div>          
         </Fragment>
       </BrowserRouter>
     )

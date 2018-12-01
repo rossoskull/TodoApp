@@ -1,0 +1,14 @@
+.icon-link {
+	color: rgb(52,52,52);
+	font-size: 30px;
+}
+
+.icon-link:hover {
+	color: rgb(0, 68, 178);
+}
+
+.drawable div:nth-child(2) {
+	background-color: rgb(230, 230, 230);
+	padding: 30px 20px;
+	color: rgb(52,52,52)
+}

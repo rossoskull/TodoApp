@@ -11,10 +11,16 @@
 input[type="text"], input[type="email"], input[type="password"], textarea {
     margin: 10px 0px;
     padding: 10px;
-    border: 1px solid grey;
-    color: rgb(100,100,100);
+    border: 2px solid rgb(161, 161, 161);
+    color: rgb(161,161,161);
     background-color: white;
     border-radius: 5px;
+    transition: 0.1s;
+}
+
+input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focus, textarea:focus {
+    border: 2px solid rgb(59, 59, 59);
+    color: rgb(48,48,48);
 }
 
 #submit-button {
