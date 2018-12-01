@@ -26,27 +26,19 @@ export const userReducer = (state = initState, action) => {
                 authError: null
             }
 
+        case 'RESET_LOGIN_LOADSTATE':
+            return {
+                ...state,
+                loaded: null
+            }
+
         case 'LOGOUT_USER_ERROR':
             return {
                 ...state,
                 authError: action.e
             }
-        
-        case 'SIGNUP_SUCCESS':
-            return {
-                ...state,
-                authError: null
-            }
 
-        case 'SIGNUP_ERROR':
-            return {
-                ...state,
-                authError: action.err
-            }
-        
         default:
-            break
+            return state
     }
-    
-    return state
 }

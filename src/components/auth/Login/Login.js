@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react'
 import { Typography, Button, Card, CardContent } from '@material-ui/core';
 import pallette from '../../layout/pallette'
 import { connect } from 'react-redux'
-import { loginUser } from '../../../store/actions/userActions'
+import { loginUser, resetLoginLoadstate } from '../../../store/actions/userActions'
 import { Redirect } from 'react-router-dom'
 import './Login.css'
 import Loader from '../../layout/Loader/Loader';
@@ -30,7 +30,12 @@ class Login extends Component {
     render() {
         
         if ( !this.props.firebase.auth.isEmpty ) { return <Redirect to="/TodoApp/display" /> }
-        if ( this.props.loaded === false && this.state.loading === true ) { this.setState({loading: false}) }
+        
+        if ( this.props.loaded === false && this.state.loading === true ) {
+            this.setState({loading: false})
+            this.props.reset()
+        }
+
         return(
             <Fragment>
                 <form onSubmit={this.handleSubmit} name='loginForm'>
@@ -66,7 +71,8 @@ class Login extends Component {
 
 const mapDispathToComponent = dispatch => {
     return {
-        loginUser: user => dispatch(loginUser(user))
+        loginUser: user => dispatch(loginUser(user)),
+        reset: () => dispatch(resetLoginLoadstate())
     }
 }
 

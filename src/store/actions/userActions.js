@@ -43,3 +43,15 @@ export const signUp = user => {
         })
     }
 }
+
+export const resetLoginLoadstate = dispatch => {
+    return (dispatch, getState) => {
+        dispatch({type: 'RESET_LOGIN_LOADSTATE'})
+    }
+}
+
+export const resetSignupLoadstate = dispatch => {
+    return (dispatch, getState) => {
+        dispatch({type: 'RESET_SIGNUP_LOADSTATE'})
+    }
+}

@@ -4,8 +4,9 @@ import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 import { Button } from '@material-ui/core'
 import pallette from '../../layout/pallette'
-import { signUp } from '../../../store/actions/userActions'
+import { signUp, resetSignupLoadstate } from '../../../store/actions/userActions'
 import './Signup.css'
+import Loader from '../../layout/Loader/Loader';
 
 class Signup extends Component {
 
@@ -13,12 +14,13 @@ class Signup extends Component {
         fname: '',
         lname: '',
         email: '',
-        password: ''
+        password: '',
+        loading: false
     }
 
     handleSubmit = e => {
         e.preventDefault()
-        console.log(this.state)
+        this.setState({loading: true})
         this.props.signUp(this.state)
     }
 
@@ -32,6 +34,11 @@ class Signup extends Component {
 
         if ( !this.props.firebase.auth.isEmpty ) {
             return (<Redirect to="/TodoApp/display" />)
+        }
+
+        if ( this.props.loaded === false && this.state.loading === true ) {
+            this.setState({loading: false})
+            this.props.reset()
         }
 
         return(
@@ -64,6 +71,7 @@ class Signup extends Component {
                         </CardContent>
                     </Card>
                 </form>
+                <Loader loading={this.state.loading} />
             </Fragment>
         )
     }
@@ -72,13 +80,15 @@ class Signup extends Component {
 const mapStateToProps = state => {
     return {
         firebase: state.firebase,
-        authError: state.user.authError
+        authError: state.signup.authError,
+        loaded: state.signup.loaded
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
-        signUp: user => dispatch(signUp(user))
+        signUp: user => dispatch(signUp(user)),
+        reset: () => dispatch(resetSignupLoadstate())
     }
 }
 
