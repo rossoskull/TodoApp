@@ -25,7 +25,7 @@ class Login extends Component {
 
     render() {
         
-        if ( !this.props.firebase.auth.isEmpty ) { return <Redirect to="/kuizu/display" /> }
+        if ( !this.props.firebase.auth.isEmpty ) { return <Redirect to="/TodoApp/display" /> }
 
         return(
             <Fragment>

@@ -11,7 +11,7 @@ class DisplayTodo extends Component {
         let { todos, auth } = this.props
 
         if ( auth.isEmpty ) {
-            return (<Redirect to="/kuizu/" />)
+            return (<Redirect to="/TodoApp/" />)
         }
 
         const colorCode = {
@@ -28,7 +28,7 @@ class DisplayTodo extends Component {
         
         return(
             <div className='todos'>
-                <Typography variant='display1'>
+                <Typography variant='display1' align='center'>
                     Todos
                 </Typography>
                 {todos && todos.map(t => {

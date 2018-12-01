@@ -31,7 +31,7 @@ class CreateTodo extends Component {
     render() {
 
         if ( this.props.auth.isEmpty ) {
-            return <Redirect to='/kuizu/' />
+            return <Redirect to='/TodoApp/' />
         }
 
         return(
@@ -40,7 +40,7 @@ class CreateTodo extends Component {
                 <form name='addtodo' onSubmit={this.handleSubmit}>
                     <Card className='form-card'>
                         <CardContent>
-                            <Typography variant='display1'>
+                            <Typography variant='display1' align='center'>
                                 Create Todo
                             </Typography>
                             <input name='title' type='text' placeholder='Title' onChange={this.handleChange} /><br />
