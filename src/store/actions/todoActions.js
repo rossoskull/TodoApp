@@ -1,14 +1,20 @@
 export const createTodo = todo => {
-    return (dispatch, getState, { getFirebase, getFirestore }) => {
-        const firestore = getFirestore()
-        firestore.collection('todos').add({
-            ...todo,
-            date: new Date()
-        }).then(() => {
-            dispatch({type: 'CREATE_TODO', todo})
-        }).catch(e => {
-            dispatch({type: 'CREATE_TODO_ERROR', err: e})
-        })
+    return (dispatch, getState, { getFirestore }) => {
+        if ( todo.title === null || todo.title === '' ) {
+            dispatch({type: 'CREATE_TODO_ERROR', e: 'Title cannot be empty.'})
+        } else if ( todo.body === null || todo.body === '' ) {
+            dispatch({type: 'CREATE_TODO_ERROR', e: 'Body cannot be empty.'})
+        } else {
+            const firestore = getFirestore()
+            firestore.collection('todos').add({
+                ...todo,
+                date: new Date()
+            }).then(() => {
+                dispatch({type: 'CREATE_TODO', todo})
+            }).catch(e => {
+                dispatch({type: 'CREATE_TODO_ERROR', err: e})
+            })
+        }        
     }
 }
 

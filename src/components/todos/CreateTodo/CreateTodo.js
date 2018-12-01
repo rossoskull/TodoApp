@@ -48,8 +48,7 @@ class CreateTodo extends Component {
         }
 
         return(
-            <Fragment>
-                
+            <Fragment>                
                 <form name='addtodo' onSubmit={this.handleSubmit}>
                     <Card className='form-card'>
                         <CardContent>
@@ -58,6 +57,9 @@ class CreateTodo extends Component {
                             </Typography>
                             <input name='title' type='text' placeholder='Title' onChange={this.handleChange} /><br />
                             <textarea name='body' placeholder='Body' onChange={this.handleChange} /><br />
+                            <p style={{textAlign: 'center', color: 'red'}} >
+                                {(this.props.todoError) ? this.props.todoError : null}
+                            </p>
                             <Button
                                 type='submit'
                                 id='submit-button'
@@ -82,7 +84,8 @@ const mapStateToProps = state => {
     return {
         auth: state.firebase.auth,
         profile: state.firebase.profile,
-        loaded: state.todo.loaded
+        loaded: state.todo.loaded,
+        todoError: state.todo.todoError
     }
 }
 
