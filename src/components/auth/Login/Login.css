@@ -1,0 +1,14 @@
+.form-card {
+    width: 400px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translateY(-50%) translateX(-50%);
+}
+
+input {
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+}
+

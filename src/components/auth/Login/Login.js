@@ -1,9 +1,10 @@
 import React, { Component, Fragment } from 'react'
-import { Typography, TextField, Button } from '@material-ui/core';
+import { Typography, Button, Card, CardContent } from '@material-ui/core';
 import pallette from '../../layout/pallette'
 import { connect } from 'react-redux'
 import { loginUser } from '../../../store/actions/userActions'
 import { Redirect } from 'react-router-dom'
+import './Login.css'
 
 class Login extends Component {
     state = {
@@ -28,18 +29,30 @@ class Login extends Component {
 
         return(
             <Fragment>
-                <Typography variant='h3'>
-                    Log In
-                </Typography>
                 <form onSubmit={this.handleSubmit} name='loginForm'>
-                    <TextField type='text' label='Email ID' id='email' onChange={this.handleChange}></TextField><br />
-                    <TextField type='password' label='Password' id='password' onChange={this.handleChange}></TextField><br />
-                    <Button type='submit' style={{backgroundColor: pallette.jadeGreen }} >
-                        Submit
-                    </Button>
-                    <p style={{textAlign: 'center', color: 'red'}} >
-                        {(this.props.authError) ? this.props.authError.message : null}
-                    </p>
+                    <Card className='form-card'>
+                        <CardContent>
+                            <Typography variant='display1' align='center'>
+                                Log In
+                            </Typography>                    
+                            <input type='email' placeholder='Email ID' id='email' onChange={this.handleChange} /><br />
+                            <input type='password' placeholder='Password' id='password' onChange={this.handleChange} /><br />
+                            <p style={{textAlign: 'center', color: 'red'}} >
+                                {(this.props.authError) ? this.props.authError.message : null}
+                            </p>
+                            <Button
+                                type='submit'
+                                id='submit-button'
+                                style={{
+                                    backgroundColor: pallette.jadeGreen,
+                                    margin: 'auto',
+                                    color: 'white',
+                                    width: '125px'
+                                }}>
+                                Submit
+                            </Button>
+                        </CardContent>                   
+                    </Card>
                 </form>
             </Fragment>
         )

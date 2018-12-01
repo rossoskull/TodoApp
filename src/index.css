@@ -9,3 +9,8 @@ body {
   background-color: #D0F0C0; /* Tea green */
   margin: 0px auto;
 }
+
+#root {
+  width: 100vw;
+  height: 100vh;
+}

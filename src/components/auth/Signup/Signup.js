@@ -1,10 +1,11 @@
 import React, { Component, Fragment } from 'react'
-import { Typography } from '@material-ui/core';
+import { Typography, CardContent, Card } from '@material-ui/core'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
-import { TextField, Button } from '@material-ui/core'
+import { Button } from '@material-ui/core'
 import pallette from '../../layout/pallette'
 import { signUp } from '../../../store/actions/userActions'
+import './Signup.css'
 
 class Signup extends Component {
 
@@ -34,20 +35,33 @@ class Signup extends Component {
 
         return(
             <Fragment>
-                <Typography variant='display1'>
-                    Signup
-                </Typography>
                 <form onSubmit={this.handleSubmit} name='loginForm'>
-                    <TextField type='text' label='First Name' id='fname' onChange={this.handleChange}></TextField><br />
-                    <TextField type='text' label='Last Name' id='lname' onChange={this.handleChange}></TextField><br />
-                    <TextField type='text' label='Email ID' id='email' onChange={this.handleChange}></TextField><br />
-                    <TextField type='password' label='Password' id='password' onChange={this.handleChange}></TextField><br />
-                    <Button type='submit' style={{backgroundColor: pallette.jadeGreen, color: 'white'}} >
-                        Sign Up
-                    </Button>
-                    <p style={{textAlign: 'center', color: 'red'}} >
-                        {(this.props.authError) ? this.props.authError.message : null}
-                    </p>
+                    <Card className='form-card-signup'>
+                        <CardContent>
+                            <Typography variant='display1' align='center'>
+                                Sign Up
+                            </Typography>
+                        
+                            <input type='text' placeholder='First Name' id='fname' onChange={this.handleChange} /><br />
+                            <input type='text' placeholder='Last Name' id='lname' onChange={this.handleChange} /><br />
+                            <input type='email' placeholder='Email ID' id='email' onChange={this.handleChange} /><br />
+                            <input type='password' placeholder='Password' id='password' onChange={this.handleChange} /><br />
+                            <p style={{textAlign: 'center', color: 'red'}} >
+                                {(this.props.authError) ? this.props.authError.message : null}
+                            </p>
+                            <Button
+                                type='submit'
+                                id='submit-button'
+                                style={{
+                                    backgroundColor: pallette.jadeGreen,
+                                    margin: 'auto',
+                                    color: 'white',
+                                    width: '125px'
+                                }}>
+                                Submit
+                            </Button>
+                        </CardContent>
+                    </Card>
                 </form>
             </Fragment>
         )
