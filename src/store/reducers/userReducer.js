@@ -9,13 +9,15 @@ export const userReducer = (state = initState, action) => {
         case 'LOGIN':
             return {
                 ...state,
-                authError: null
+                authError: null,
+                loaded: true
             }
 
         case 'LOGIN_ERROR':
             return {
                 ...state,
-                authError: action.e
+                authError: action.e,
+                loaded: false
             }
 
         case 'LOGOUT_USER':

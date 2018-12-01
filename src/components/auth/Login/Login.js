@@ -5,16 +5,20 @@ import { connect } from 'react-redux'
 import { loginUser } from '../../../store/actions/userActions'
 import { Redirect } from 'react-router-dom'
 import './Login.css'
+import Loader from '../../layout/Loader/Loader';
 
 class Login extends Component {
     state = {
         'email': '',
-        'password': ''
+        'password': '',
+        'loading': false
     }
 
     handleSubmit = e => {
         e.preventDefault()
-        this.props.loginUser(this.state)
+        this.setState({loading: true})
+        const { email, password } = this.state
+        this.props.loginUser({email, password})
     }
 
     handleChange = e => {
@@ -26,7 +30,7 @@ class Login extends Component {
     render() {
         
         if ( !this.props.firebase.auth.isEmpty ) { return <Redirect to="/TodoApp/display" /> }
-
+        if ( this.props.loaded === false && this.state.loading === true ) { this.setState({loading: false}) }
         return(
             <Fragment>
                 <form onSubmit={this.handleSubmit} name='loginForm'>
@@ -54,6 +58,7 @@ class Login extends Component {
                         </CardContent>                   
                     </Card>
                 </form>
+                <Loader loading={this.state.loading} />
             </Fragment>
         )
     }
@@ -68,7 +73,8 @@ const mapDispathToComponent = dispatch => {
 const mapStateToProps = state => {
     return {
         firebase: state.firebase,
-        authError: state.user.authError
+        authError: state.user.authError,
+        loaded: state.user.loaded
     }
 }
 

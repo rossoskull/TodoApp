@@ -1,0 +1,17 @@
+.bl-bg {
+    position: absolute;
+    z-index: 1500;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.circle-progress {
+    position: absolute;
+    z-index: 1600;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+}
