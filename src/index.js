@@ -1,7 +1,8 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
+import React from 'react'
+import ReactDOM from 'react-dom'
+import './index.css'
+import App from './App'
+import Loader from './components/layout/Loader/Loader'
 
 // Redux & firebase
 import { createStore, applyMiddleware, compose } from 'redux'
@@ -20,7 +21,7 @@ const store = createStore(rootReducer,
     )
 )
 
-ReactDOM.render(<h3>Loading App</h3>, document.getElementById('root'))
+ReactDOM.render(<Loader loading={true} />, document.getElementById('root'))
 
 store.firebaseAuthIsReady.then(() => {
     ReactDOM.render(<Provider store={store}><App /></Provider>, document.getElementById('root'))
