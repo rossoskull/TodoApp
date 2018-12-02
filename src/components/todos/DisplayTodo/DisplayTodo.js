@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 import { Card, Typography, CardContent, CardActions, Button } from '@material-ui/core'
 import { deleteTodo, updateTodo } from '../../../store/actions/todoActions'
 import { Redirect } from 'react-router-dom'
+import Loader from '../../layout/Loader/Loader'
 
 class DisplayTodo extends Component {
     render() {
@@ -29,9 +30,9 @@ class DisplayTodo extends Component {
         return(
             <div className='todos'>
                 <Typography variant='display1' align='center'>
-                    Todos
+                    Your Todos
                 </Typography>
-                {todos && todos.map(t => {
+                {(todos && todos.length !== 0) ? (todos.map(t => {
                     return(
                         <Card
                             key={t.id}
@@ -85,7 +86,20 @@ class DisplayTodo extends Component {
                             </CardActions>
                         </Card>
                     )
-                })}
+                })) : (todos) ? (
+                    <div className='center'>
+                        <Typography variant='display2' align='center'>
+                            Start by creating some todos!
+                        </Typography>
+                    </div>
+                ) : (
+                    <div className='center'>
+                        <Typography variant='display1' align='center'>
+                            Fetching Todos
+                        </Typography>
+                    </div>
+                )}
+                <Loader loading={!todos}/>
             </div>
         )
     }
