@@ -1,9 +1,10 @@
 import React from 'react'
-import { AppBar, Toolbar, Typography } from '@material-ui/core'
+import { AppBar, Toolbar } from '@material-ui/core'
 import LoggedInButtons from './LoggedInButtons'
 import LoggedOutButtons from './LoggedOutButtons'
 import pallette from '../pallette'
 import { connect } from 'react-redux'
+import title from '../../../img/white_over_green.png'
 
 const Header = ({firebase}) => {
     const styles = {
@@ -23,9 +24,7 @@ const Header = ({firebase}) => {
         <header>
             <AppBar style={styles.appbar} position='relative'>
                 <Toolbar>
-                    <Typography variant='display1' color='inherit'>
-                        React Todo App
-                    </Typography>
+                    <img src={title} alt='TodoApp Logo' height='50px' />
                     <div style={{marginLeft: 'auto'}}> 
                     {Buttons}                       
                     </div>
