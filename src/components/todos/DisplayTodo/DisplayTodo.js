@@ -26,6 +26,8 @@ class DisplayTodo extends Component {
                 return (t.authId === auth.uid)
             })
         }
+
+        document.title = 'Display \u00B7 TodoApp'
         
         return(
             <div className='todos'>

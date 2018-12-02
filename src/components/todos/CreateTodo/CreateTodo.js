@@ -47,6 +47,8 @@ class CreateTodo extends Component {
             return <Redirect to='/TodoApp/display' />
         }
 
+        document.title = 'Create Todo \u00B7 TodoApp'
+
         return(
             <Fragment>                
                 <form name='addtodo' onSubmit={this.handleSubmit}>

@@ -41,6 +41,8 @@ class Signup extends Component {
             this.props.reset()
         }
 
+        document.title = 'Sign Up \u00B7 TodoApp'
+
         return(
             <Fragment>
                 <form onSubmit={this.handleSubmit} name='loginForm'>
