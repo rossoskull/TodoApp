@@ -20,8 +20,7 @@ Create a firebase project on [Firebase Console](https://console.firebase.google.
 After creating it, you will need to create a `Config` directory in the `/src/` directory.  
 Create a file named `fbconfig.js` in the `Config` directory.  
 ##### Put the following details in `fbconfig.js` from your firebase project.  
-
-
+![screenshot from 2018-12-02 13-36-06](https://user-images.githubusercontent.com/27884543/49337338-efb43900-f637-11e8-965c-22cf19b492b8.png)
 #### Running the app
 ```sh
 $ npm start
